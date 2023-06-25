@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var isPresenting: Bool = false
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Text("Initial View")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -22,11 +22,12 @@ struct ContentView: View {
                     }
                 }
                 .sheet(isPresented: $isPresenting) {
-                    NavigationView {
+                    NavigationStack {
                         Text("Settings Page")
                             .toolbar {
                                 ToolbarItem {
-                                    Button("Save") {}
+                                    Button("Save",
+                                           action: { isPresenting.toggle() })
                                 }
                             }
                     }
